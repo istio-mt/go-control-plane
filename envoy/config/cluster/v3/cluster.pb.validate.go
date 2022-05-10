@@ -1413,6 +1413,16 @@ func (m *Cluster_SlowStartConfig) Validate() error {
 		}
 	}
 
+	if v, ok := interface{}(m.GetMinWeightPercent()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return Cluster_SlowStartConfigValidationError{
+				field:  "MinWeightPercent",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	return nil
 }
 

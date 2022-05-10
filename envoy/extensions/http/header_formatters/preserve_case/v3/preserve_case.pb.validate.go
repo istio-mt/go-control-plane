@@ -41,6 +41,15 @@ func (m *PreserveCaseFormatterConfig) Validate() error {
 		return nil
 	}
 
+	// no validation rules for ForwardReasonPhrase
+
+	if _, ok := PreserveCaseFormatterConfig_FormatterTypeOnEnvoyHeaders_name[int32(m.GetFormatterTypeOnEnvoyHeaders())]; !ok {
+		return PreserveCaseFormatterConfigValidationError{
+			field:  "FormatterTypeOnEnvoyHeaders",
+			reason: "value must be one of the defined enum values",
+		}
+	}
+
 	return nil
 }
 
